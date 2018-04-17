@@ -20,8 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4130853353965136}
   - component: {fileID: 212370673996003162}
+  - component: {fileID: 50520517507132330}
+  - component: {fileID: 60086118509833448}
   - component: {fileID: 114000210729507194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,12 +37,75 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1053856904872012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.86, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50520517507132330
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053856904872012}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &60086118509833448
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053856904872012}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.99, y: 0.75}
+    newSize: {x: 0.99, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.48928082, y: 0.08496618}
+      - {x: 0.3764499, y: 0.020880222}
+      - {x: 0.2864381, y: 0.036370754}
+      - {x: 0.1535954, y: 0.13777518}
+      - {x: 0.106404364, y: 0.36928105}
+      - {x: -0.105, y: 0.375}
+      - {x: -0.145, y: 0.125}
+      - {x: -0.265, y: 0.065}
+      - {x: -0.36805636, y: 0.012050867}
+      - {x: -0.49499997, y: 0.095}
+      - {x: -0.4606854, y: -0.2507193}
+      - {x: -0.41356185, y: -0.22780871}
+      - {x: -0.145, y: -0.295}
+      - {x: -0.095, y: -0.375}
+      - {x: 0.105, y: -0.375}
+      - {x: 0.15777498, y: -0.30215764}
+      - {x: 0.38724917, y: -0.24415946}
+      - {x: 0.45499998, y: -0.265}
+      - {x: 0.4721235, y: -0.26643777}
 --- !u!114 &114000210729507194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,8 +120,8 @@ MonoBehaviour:
   projectile: {fileID: 1965337185039220, guid: 33d260dbd07894b2c90b076d025632df, type: 2}
   speed: 7
   padding: 1
-  projectileSpeed: 5
   firingRate: 0.19
+  health: 3
 --- !u!212 &212370673996003162
 SpriteRenderer:
   m_ObjectHideFlags: 1

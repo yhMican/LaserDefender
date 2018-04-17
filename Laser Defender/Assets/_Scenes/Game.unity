@@ -119,6 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129180460}
   - component: {fileID: 129180461}
+  - component: {fileID: 129180462}
   m_Layer: 0
   m_Name: EnemyFormation
   m_TagString: Untagged
@@ -153,15 +154,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 129180459}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0ef04d958114203b4575041e487ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &129180462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129180459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b9a98f64420c492888ae544e60dcf32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1650360675389998, guid: 1aeef9b8a8765419d89d0aee6dae534d,
     type: 2}
-  width: 11.74
-  height: 10.1
+  width: 12.5
+  height: 9
   speed: 3
-  padding: 1
+  spawnDelay: 0.5
 --- !u!1001 &563176947
 Prefab:
   m_ObjectHideFlags: 0
@@ -201,6 +213,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 60086118509833448, guid: 369dc943f09bd486d87ff7150beebe58,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50520517507132330, guid: 369dc943f09bd486d87ff7150beebe58,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053856904872012, guid: 369dc943f09bd486d87ff7150beebe58, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 369dc943f09bd486d87ff7150beebe58, type: 2}
   m_IsPrefabParent: 0
@@ -215,7 +241,7 @@ GameObject:
   - component: {fileID: 682112589}
   - component: {fileID: 682112591}
   m_Layer: 0
-  m_Name: Shredder
+  m_Name: TopShredder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,6 +296,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1e142ff2ba34727a3df727b97ef491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &802904225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 802904228}
+  - component: {fileID: 802904227}
+  - component: {fileID: 802904226}
+  m_Layer: 0
+  m_Name: BottomShredder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &802904226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802904225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e1e142ff2ba34727a3df727b97ef491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &802904227
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802904225}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &802904228
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 802904225}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalScale: {x: 20, y: 5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1168984690
 Prefab:
   m_ObjectHideFlags: 0

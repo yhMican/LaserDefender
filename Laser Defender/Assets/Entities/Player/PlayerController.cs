@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed;
 	public float padding;
-	public float projectileSpeed;
 	public float firingRate;
+	public float health;
 	//public Rigidbody2D player; // thought I need this...
 
 	float xmin;
@@ -26,6 +26,19 @@ public class PlayerController : MonoBehaviour {
 
 		//Vector3 topmost = Camera.main.ViewportToWorldPoint (new Vector3 (0, 1, distance));
 	}
+
+	void OnTriggerEnter2D (Collider2D col) {
+		//Debug.Log (col);
+		Projectile missile = col.gameObject.GetComponent<Projectile> ();
+		if (missile) {
+			health -= missile.GetDamage ();
+			missile.Hit ();
+			if (health <= 0) {
+				Destroy (gameObject);
+			}
+		}
+	}
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,7 +56,6 @@ public class PlayerController : MonoBehaviour {
 		transform.position = new Vector3 (newX, transform.position.y, transform.position.z);
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			Debug.Log ("being pushed");
 			InvokeRepeating ("Fire", 0.00001f, firingRate);
 		}
 		if (Input.GetKeyUp (KeyCode.Space)) {
@@ -52,8 +64,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Fire () {
-		GameObject beam = Instantiate (projectile, transform.position, Quaternion.identity);
-		beam.GetComponent<Rigidbody2D>().velocity = new Vector3 (0, projectileSpeed, 0);
-		Debug.Log ("fire!");
+		Vector3 startPosition = transform.position + new Vector3 (0, 1, 0);
+		GameObject beam = Instantiate (projectile, startPosition, Quaternion.identity);
+		beam.GetComponent<Rigidbody2D>().velocity = new Vector3 (0, projectile.GetComponent<Projectile>().speed, 0);
 	}
 }
