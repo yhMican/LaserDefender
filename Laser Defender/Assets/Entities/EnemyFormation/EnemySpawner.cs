@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
 	public GameObject enemyPrefab;
-	public float width = 10f;
-	public float height = 5.0f;
-	public float speed = 5.0f;
+	public float width;
+	public float height;
+	public float speed;
 	public float padding;
 
 	private float xmin;
@@ -46,6 +46,8 @@ public class EnemySpawner : MonoBehaviour {
 		if (newX == xmin || newX == xmax) {
 			speed *= -1;
 		}*/
+		// Part of the formation go outside of the playground.
+		// Can stack at the side of the playground for some high speeds.
 
 		// By Lecture
 		if (movingRight) {
@@ -56,9 +58,11 @@ public class EnemySpawner : MonoBehaviour {
 
 		float rightEdgeOfFormation = transform.position.x + 0.5f * width;
 		float leftEdgeOfFormation = transform.position.x - 0.5f * width;
-		if (leftEdgeOfFormation < xmin || rightEdgeOfFormation > xmax) {
-			movingRight = !movingRight;
-		}// Can take the width of the Gizmo's width into account.
+		if (leftEdgeOfFormation < xmin) {
+			movingRight = true;
+		} else if (rightEdgeOfFormation > xmax) {
+			movingRight = false;
+		}
 
 
 
