@@ -15,7 +15,4 @@ public class Projectile : MonoBehaviour {
 		Destroy (gameObject); // self-destruction
 	}
 
-	public float GetSpeed () {
-		return speed;
-	}
 }
