@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -10,10 +11,10 @@ public class PlayerController : MonoBehaviour {
 	public float padding;
 	public float firingRate;
 	public float health;
-	//public Rigidbody2D player; // thought I need this...
+	public AudioClip fireSound;
 
-	float xmin;
-	float xmax;
+	private float xmin;
+	private float xmax;
 	//Vector3 topmost;
 
 	// Use this for initialization
@@ -23,8 +24,6 @@ public class PlayerController : MonoBehaviour {
 		Vector3 rightmost = Camera.main.ViewportToWorldPoint (new Vector3 (1, 0, distance));
 		xmin = leftmost.x + padding;
 		xmax = rightmost.x - padding;
-
-		//Vector3 topmost = Camera.main.ViewportToWorldPoint (new Vector3 (0, 1, distance));
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
@@ -34,14 +33,21 @@ public class PlayerController : MonoBehaviour {
 			health -= missile.GetDamage ();
 			missile.Hit ();
 			if (health <= 0) {
-				Destroy (gameObject);
+				Die ();
 			}
 		}
+	}
+
+	void Die () {
+		LevelManager man = GameObject.Find ("LevelManager").GetComponent <LevelManager> ();
+		man.LoadLevel ("Win Screen");
+		Destroy (gameObject);
 	}
 
 	
 	// Update is called once per frame
 	void Update () {
+		// Move and Position Controll
 		if (Input.GetKey (KeyCode.RightArrow)) {
 			//transform.position += new Vector3 (speed * Time.deltaTime, 0, 0);
 			transform.position += Vector3.right * speed * Time.deltaTime; // more readable and simpler than the way above
@@ -55,6 +61,7 @@ public class PlayerController : MonoBehaviour {
 		float newX = Mathf.Clamp (transform.position.x, xmin, xmax);
 		transform.position = new Vector3 (newX, transform.position.y, transform.position.z);
 
+		// Operates projectiles
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			InvokeRepeating ("Fire", 0.00001f, firingRate);
 		}
@@ -64,8 +71,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Fire () {
-		Vector3 startPosition = transform.position + new Vector3 (0, 1, 0);
-		GameObject beam = Instantiate (projectile, startPosition, Quaternion.identity);
+		GameObject beam = Instantiate (projectile, transform.position, Quaternion.identity);
 		beam.GetComponent<Rigidbody2D>().velocity = new Vector3 (0, projectile.GetComponent<Projectile>().speed, 0);
+		AudioSource.PlayClipAtPoint (fireSound, transform.position);
 	}
 }
